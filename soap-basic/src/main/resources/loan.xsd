@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.example.com/soap/models"
+            elementFormDefault="qualified">
+
+<!--    XSD definition for request body-->
+    <xsd:element name="CustomerRequest"> <!--This is like java request class name-->
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="customerName" type="xsd:string"/><!--This is like variables in java class-->
+                <xsd:element name="age" type="xsd:int"/>
+                <xsd:element name="email" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+<!--    XSD definition for response body-->
+    <xsd:element name="CustomerResponse"> <!--This is like java response class name-->
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="isEligible" type="xsd:boolean"/><!--This is like variables in java class-->
+                <xsd:element name="approvedAmount" type="xsd:long"/>
+                <xsd:element name="creditScore" type="xsd:int"/>
+                <xsd:element name="criteriaMismatch" type="xsd:string" maxOccurs="unbounded"/> <!-- Here is maxOccurs defines it can occur many times, which is nothing but list of strings-->
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
