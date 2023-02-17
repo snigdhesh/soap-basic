@@ -23,11 +23,21 @@ public class SoapConfig {
         return new ServletRegistrationBean<>(messageDispatcherServlet, "/ws/*");
     }
 
-    @Bean(name = "loan")
+    /**
+     * This method is nothing but the WSDL definition. WSDL is for SOAP service, whereas SWAGGER for REST service.
+     * @param schema
+     * @return
+     */
+    @Bean(name = "loan") //This name value you put here will be your WSDL name. Ex: localhost:8080/ws/loan.wsdl
     public DefaultWsdl11Definition initializeDefaultWSDL11Definition(XsdSchema schema) {
         DefaultWsdl11Definition defaultWsdl11Definition = new DefaultWsdl11Definition();
-        defaultWsdl11Definition.setPortTypeName("LoadDetector");//we can give any name for port type, but give a meaningful one
+        /**
+         * PortType is nothing but a name given for group of operations. Like users, pet etc,
+         * we can give any name for port type, but give a meaningful one
+         */
+        defaultWsdl11Definition.setPortTypeName("LoadDetector");
         defaultWsdl11Definition.setLocationUri("/ws");
+        //This is nothing but the package name, which resolves to com.example.soap.models
         defaultWsdl11Definition.setTargetNamespace("http://www.example.com/soap/models");
         defaultWsdl11Definition.setSchema(schema);
         return defaultWsdl11Definition;
